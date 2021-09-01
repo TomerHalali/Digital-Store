@@ -1,13 +1,12 @@
-.container-page-login{
-    border: 1px solid black;
-    background-color: cornsilk;
-
+.container-page-login {
+  border: 1px solid black;
+  background-color: cornsilk;
 }
 
-.login-page-row{
-    border: 1px solid red;
+.login-page-row {
+  border: 1px solid red;
 }
 
-.test{
-    border: 1px solid blue;
+.test {
+  border: 1px solid blue;
 }
