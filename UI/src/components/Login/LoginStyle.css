@@ -1,12 +1,11 @@
 .login-row{
-    justify-content: center;
-    text-align: center;
     padding: 15px;
+
 }
 .box-container{
-    width: 15rem;
-    height: 16rem;
+    width: 20rem;
+    height: 18rem;
     background-color: white;
-
+    border-radius: 10px;
 }
 

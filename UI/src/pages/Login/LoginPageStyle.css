@@ -1,6 +1,7 @@
 .container-page-login {
   border: 1px solid black;
   background-color: cornsilk;
+  height: 100%;
 }
 
 .login-page-row {
