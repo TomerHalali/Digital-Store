@@ -13,7 +13,6 @@ const NavbarComponent = () => {
           </Nav>
         </Container>
       </Navbar>
-      <br />
     </>
   );
 };
