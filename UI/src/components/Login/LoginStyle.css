@@ -9,4 +9,12 @@
     border-radius: 10px;
 }
 
+.error-message-login{
+    text-align: right;
+    font-size: small;
+    color: red;
+    padding-right: 15px !important;
+    height: 10px;
+}
+
 
