@@ -1,0 +1,12 @@
+.home-page-images {
+  height: auto;
+  min-height: 200px;
+}
+
+.row-main-image {
+  height: 100px;
+}
+
+.test {
+  object-fit: fill;
+}
