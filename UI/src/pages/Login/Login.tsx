@@ -7,16 +7,11 @@ import "../Login/LoginPageStyle.css";
 const Login = () => {
   return (
     <div className="container-page-login">
-      <LoginComponent />
       <Container fluid>
         <Row>
-          <Col>1 of 2</Col>
-          <Col>2 of 2</Col>
-        </Row>
-        <Row>
-          <Col>1 of 3</Col>
-          <Col>2 of 3</Col>
-          <Col>3 of 3</Col>
+          <Col>
+            <LoginComponent />
+          </Col>
         </Row>
       </Container>
     </div>
