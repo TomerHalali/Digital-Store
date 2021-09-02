@@ -14,7 +14,7 @@ const reducer = (state = INITIAL_STATE, action: any) => {
 
         case LOGIN:
            return {
-             ...state, userInfo: {userName: action.payload.userName , password:action.payload.password}
+             ...state, userLoginInformation: {userName: action.payload.userName , password:action.payload.password}
            };
         
          default: return state;
