@@ -1,12 +1,14 @@
 .container-page-login {
-  border: 1px solid black;
-  background-color: cornsilk;
+  background-color: rgb(227, 249, 250);
+  height: 100%;
 }
 
 .login-page-row {
-  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  height: 100%;
 }
 
-.test {
-  border: 1px solid blue;
+.login-page-column {
+  padding-top: 12%;
 }

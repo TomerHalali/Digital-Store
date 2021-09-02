@@ -9,7 +9,7 @@ import NavbarComponent from "../components/NavbarComponent/NavbarComponent";
 export default function NavRoute() {
   return (
     <Router>
-      <div>
+      <div className="nav-route-container">
         <NavbarComponent />
         <div className="main-body">
           <Switch>
