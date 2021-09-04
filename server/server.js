@@ -1,11 +1,16 @@
 const express = require('express')
-const app = express()
-const port = 3010
+const mysql = require('mysql');
+const digitalStoreRouter = require("./routes/digitalStoreRoutes");
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+
+//////////////////// Server Listen ////////////////////
+
+const app = express();
+const port = 3010;
+
+app.use(express.json({ exteended: false }));
+app.use("/", digitalStoreRouter);
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`App listening at port ${port}`)
 })

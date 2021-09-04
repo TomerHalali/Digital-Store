@@ -48,7 +48,7 @@ const Login = () => {
                         label="סיסמא"
                         variant="outlined" />
                 </Row>
-                <Row><p className="error-message-login"></p></Row>
+                <Row><p className="error-message-login">גדשגדש</p></Row>
                 <Row className="login-row" >
                     <Button onClick={applyLogin} variant="outlined" color="primary">התחבר</Button>
                 </Row>
