@@ -5,6 +5,10 @@ const connection = mysql.createConnection({
     user: "root",
     password: "147258369"
 });
+connection.connect(function (err) {
+    if (err) throw err;
+    console.log("Connected successfully to MySQL DB!");
+});
 const digitalStoreRouter = express.Router();
 
 const getMain = async (req, res) => {
@@ -14,20 +18,22 @@ const getMain = async (req, res) => {
 };
 
 const login = async (req, res) => {
-    connection.connect(function (err) {
-        if (err) throw err;
-        console.log("Connected successfully to MySQL DB!");
-    });
 
     connection.query('SELECT * from digitalstore.users', function (err, rows, fields) {
         if (err) throw err
-        res.status(200).json({
-            status: "success",
-            data: rows
-        });
+        let userConnect = rows.filter((user) => { return (user.username.toString() == req.body.username.toString() && user.password.toString() == req.body.password.toString()) });
+        if (userConnect.length != 0) {
+            res.status(200).json({
+                success: true,
+            });
+        } else {
+            res.status(200).json({
+                success: false,
+            });
+        }
+
     })
 
-    connection.end();
 }
 
 digitalStoreRouter.route("/").get(getMain);

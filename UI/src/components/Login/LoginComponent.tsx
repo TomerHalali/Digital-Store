@@ -13,11 +13,31 @@ import UserDetails from '../../model/UserDetails';
 
 const Login = () => {
     const dispatch = useDispatch();
+    const axios = require('axios');
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMesage] = useState("");
 
     function applyLogin() {
         const userDetails = new UserDetails(userName, password);
+        axios({
+            method: 'post',
+            url: "http://localhost:3010/login",
+            headers: {},
+            data: {
+                username: userName,
+                password: password
+            }
+
+        }).then((response: any) => {
+            console.log("RES: " + response.data.success);
+            if(!response.data.success){
+                setErrorMesage("שגיאה בפרטי התחברות");
+            }else{
+                setErrorMesage("")
+            }
+        })
+
         dispatch(loginActions.loginAction(userDetails));
     }
 
@@ -34,7 +54,7 @@ const Login = () => {
                         size={'small'}
                         value={userName}
                         onChange={(e) => { setUserName(e.target.value) }}
-                        id="outlined-basic"
+                        id="outlined-basic username"
                         label="שם משתמש"
                         variant="outlined" />
                 </Row>
@@ -44,11 +64,11 @@ const Login = () => {
                         value={password}
                         onChange={(e) => { setPassword(e.target.value) }}
                         type="password"
-                        id="outlined-basic"
+                        id="outlined-basic password"
                         label="סיסמא"
                         variant="outlined" />
                 </Row>
-                <Row><p className="error-message-login">גדשגדש</p></Row>
+                <Row><p className="error-message-login">{errorMessage}</p></Row>
                 <Row className="login-row" >
                     <Button onClick={applyLogin} variant="outlined" color="primary">התחבר</Button>
                 </Row>
