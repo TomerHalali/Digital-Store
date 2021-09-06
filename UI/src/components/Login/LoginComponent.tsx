@@ -20,25 +20,38 @@ const Login = () => {
 
     function applyLogin() {
         const userDetails = new UserDetails(userName, password);
+
         axios({
             method: 'post',
-            url: "http://localhost:3010/login",
-            headers: {},
+            url: "http://localhost:3010/api/v1/generateAccessToken",
             data: {
-                username: userName,
-                password: password
+                username: userName
             }
-
         }).then((response: any) => {
-            console.log("RES: " + response.data.success);
-            if(!response.data.success){
-                setErrorMesage("שגיאה בפרטי התחברות");
-            }else{
-                setErrorMesage("")
-            }
+
+            axios({
+                method: 'post',
+                url: "http://localhost:3010/api/v1/login",
+                headers: {
+                    'authorization': "Bearer " + response.data.token
+                },
+                data: {
+                    username: userName,
+                    password: password
+                }
+    
+            }).then((response: any) => {
+                if(!response.data.success){
+                    setErrorMesage("שגיאה בפרטי התחברות");
+                }else{
+                    setErrorMesage("")
+                    dispatch(loginActions.loginAction(userDetails));
+                }
+            })
+            
         })
 
-        dispatch(loginActions.loginAction(userDetails));
+
     }
 
     return (
