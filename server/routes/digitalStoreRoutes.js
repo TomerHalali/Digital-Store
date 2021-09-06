@@ -1,5 +1,11 @@
 const express = require("express");
 const mysql = require('mysql');
+const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken');
+const auth = require('../middleware/auth');
+const digitalStoreRouter = express.Router();
+
+
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -9,13 +15,18 @@ connection.connect(function (err) {
     if (err) throw err;
     console.log("Connected successfully to MySQL DB!");
 });
-const digitalStoreRouter = express.Router();
 
-const getMain = async (req, res) => {
+
+const generateAccessToken = async (req,res) => {
+
+    const username = req.body.username;
+    dotenv.config();
+
+    const token = jwt.sign(username, process.env.TOKEN_SECRET);
     res.status(200).json({
-        status: "success"
-    });
-};
+        token
+    })
+  }
 
 const login = async (req, res) => {
 
@@ -36,8 +47,7 @@ const login = async (req, res) => {
 
 }
 
-digitalStoreRouter.route("/").get(getMain);
-digitalStoreRouter.route("/login").post(login);
-
+digitalStoreRouter.route("/generateAccessToken").post(generateAccessToken);
+digitalStoreRouter.route("/login").post(auth,login);
 
 module.exports = digitalStoreRouter;
