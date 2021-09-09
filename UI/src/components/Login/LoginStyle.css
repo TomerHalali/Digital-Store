@@ -16,4 +16,10 @@
     height: 10px;
 }
 
+.last-col-login{
+    padding:0  !important;
+    text-align: right;
+    font-size: small;
+
+}
 

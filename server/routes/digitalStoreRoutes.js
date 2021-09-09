@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 const auth = require('../middleware/auth');
 const digitalStoreRouter = express.Router();
-
+const { v4: uuidv4 } = require('uuid');
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -17,7 +17,7 @@ connection.connect(function (err) {
 });
 
 
-const generateAccessToken = async (req,res) => {
+const generateAccessToken = async (req, res) => {
 
     const username = req.body.username;
     dotenv.config();
@@ -26,7 +26,7 @@ const generateAccessToken = async (req,res) => {
     res.status(200).json({
         token
     })
-  }
+}
 
 const login = async (req, res) => {
 
@@ -47,7 +47,24 @@ const login = async (req, res) => {
 
 }
 
+const registration = async (req, res) => {
+
+    let sql = `INSERT INTO digitalstore.users (uuid, username, password, firstName, lastName, email) VALUES ("${uuidv4()}","${req.body.username}","${req.body.password}","${req.body.firstName}","${req.body.lastName}","${req.body.email}")`;
+    try {
+        connection.query(sql);
+    } catch (error) {
+        console.log("HEEEEOEEEOEOEE", error)
+        
+    }
+    res.status(200).json({
+
+    })
+
+
+}
+
 digitalStoreRouter.route("/generateAccessToken").post(generateAccessToken);
-digitalStoreRouter.route("/login").post(auth,login);
+digitalStoreRouter.route("/login").post(auth, login);
+digitalStoreRouter.route("/postRegistration").post(registration);
 
 module.exports = digitalStoreRouter;

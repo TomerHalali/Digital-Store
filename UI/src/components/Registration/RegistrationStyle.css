@@ -1,0 +1,27 @@
+.box-container{
+    width: 60rem;
+    height: 36rem;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.row-registration{
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    padding-right: 5vw;
+    padding-left: 5vw;
+}
+
+.registration-row{
+    padding-right: 10vw;
+    padding-left: 10vw;
+}
+
+.error-row{
+    height: 18vh;
+}
+
+#error-line{
+    text-align: right;
+    border: 1px solid blue;
+}
