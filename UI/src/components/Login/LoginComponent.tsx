@@ -3,12 +3,11 @@ import Box from '@material-ui/core/Box';
 import { Button } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import "../Login/LoginStyle.css";
 import { useDispatch } from 'react-redux'
 import * as loginActions from '../../redux/action/login.action';
 import UserDetails from '../../model/UserDetails';
-
-
 
 
 const Login = () => {
@@ -39,16 +38,16 @@ const Login = () => {
                     username: userName,
                     password: password
                 }
-    
+
             }).then((response: any) => {
-                if(!response.data.success){
+                if (!response.data.success) {
                     setErrorMesage("שגיאה בפרטי התחברות");
-                }else{
+                } else {
                     setErrorMesage("")
                     dispatch(loginActions.loginAction(userDetails));
                 }
             })
-            
+
         })
 
 
@@ -84,6 +83,17 @@ const Login = () => {
                 <Row><p className="error-message-login">{errorMessage}</p></Row>
                 <Row className="login-row" >
                     <Button onClick={applyLogin} variant="outlined" color="primary">התחבר</Button>
+                </Row>
+                <Row>
+                    <Col className="last-col-login">
+                        <a href=""> שכחתי סיסמא</a>
+                    </Col>
+                    <Col className="last-col-login">
+                        <p style={{textAlign: 'center'}}></p>
+                    </Col>
+                    <Col style={{textAlign: 'center'}} className="last-col-login">
+                        <a  href="">הרשמה</a>
+                    </Col>
                 </Row>
             </form>
         </Box>

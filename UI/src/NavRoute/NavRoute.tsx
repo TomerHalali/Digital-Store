@@ -4,6 +4,7 @@ import "./NavRoute.css";
 import Home from "../pages/Home/Home";
 import Shop from "../pages/Shop/Shop";
 import Login from "../pages/Login/Login";
+import Registration from "../pages/Registration/Registration";
 import NavbarComponent from "../components/NavbarComponent/NavbarComponent";
 
 export default function NavRoute() {

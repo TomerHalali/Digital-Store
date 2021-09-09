@@ -1,0 +1,14 @@
+.container-page-registration{
+    background-color: rgb(227, 249, 250);
+    height: 100%;
+  }
+  
+  .registration-page-row {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding-right: 20%;
+    padding-left: 20%;
+  }
+  
