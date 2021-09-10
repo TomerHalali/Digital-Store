@@ -48,7 +48,6 @@ const login = async (req, res) => {
 }
 
 const registration = async (req, res) => {
-
     let sql = `INSERT INTO digitalstore.users (uuid, username, password, firstName, lastName, email) VALUES ("${uuidv4()}","${req.body.username}","${req.body.password}","${req.body.firstName}","${req.body.lastName}","${req.body.email}")`;
     try {
         connection.query(sql);
@@ -59,7 +58,6 @@ const registration = async (req, res) => {
     res.status(200).json({
 
     })
-
 
 }
 

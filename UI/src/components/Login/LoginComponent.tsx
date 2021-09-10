@@ -18,38 +18,64 @@ const Login = () => {
     const [errorMessage, setErrorMesage] = useState("");
 
     function applyLogin() {
-        const userDetails = new UserDetails(userName, password);
 
-        axios({
-            method: 'post',
-            url: "http://localhost:3010/api/v1/generateAccessToken",
-            data: {
-                username: userName
-            }
-        }).then((response: any) => {
+        const userNameField = document.getElementById("username-field");
+        const passwordField = document.getElementById("password-field");
+
+        let isValid = checkValidationInputs(userNameField, passwordField);
+
+        if (isValid) {
+
+            const userDetails = new UserDetails(userName, password);
 
             axios({
                 method: 'post',
-                url: "http://localhost:3010/api/v1/login",
-                headers: {
-                    'authorization': "Bearer " + response.data.token
-                },
+                url: "http://localhost:3010/api/v1/generateAccessToken",
                 data: {
-                    username: userName,
-                    password: password
+                    username: userName
                 }
-
             }).then((response: any) => {
-                if (!response.data.success) {
-                    setErrorMesage("שגיאה בפרטי התחברות");
-                } else {
-                    setErrorMesage("")
-                    dispatch(loginActions.loginAction(userDetails));
-                }
+
+                axios({
+                    method: 'post',
+                    url: "http://localhost:3010/api/v1/login",
+                    headers: {
+                        'authorization': "Bearer " + response.data.token
+                    },
+                    data: {
+                        username: userName,
+                        password: password
+                    }
+
+                }).then((response: any) => {
+                    if (!response.data.success) {
+                        setErrorMesage("שגיאה בפרטי התחברות");
+                    } else {
+                        setErrorMesage("")
+                        dispatch(loginActions.loginAction(userDetails));
+                    }
+                })
             })
+        }
+    }
 
-        })
+    function checkValidationInputs(usernameField: any, passwordField: any) {
+        let isValid = true;
 
+        if (userName === "") {
+            if (usernameField) usernameField.style.borderBottom = "1px solid red";
+            isValid = false;
+        } else {
+            if (usernameField) usernameField.style.borderBottom = "";
+        }
+        if (password === "") {
+            if (passwordField) passwordField.style.borderBottom = "1px solid red";
+            isValid = false;
+        } else {
+            if (passwordField) passwordField.style.borderBottom = "";
+        }
+
+        return isValid;
 
     }
 
@@ -58,7 +84,7 @@ const Login = () => {
             boxShadow={18}
             m={4}
             p={4}
-            className="box-container"
+            className="box-container-login"
         >
             <form autoComplete="false">
                 <Row className="login-row">
@@ -66,7 +92,7 @@ const Login = () => {
                         size={'small'}
                         value={userName}
                         onChange={(e) => { setUserName(e.target.value) }}
-                        id="outlined-basic username"
+                        id="username-field"
                         label="שם משתמש"
                         variant="outlined" />
                 </Row>
@@ -76,7 +102,7 @@ const Login = () => {
                         value={password}
                         onChange={(e) => { setPassword(e.target.value) }}
                         type="password"
-                        id="outlined-basic password"
+                        id="password-field"
                         label="סיסמא"
                         variant="outlined" />
                 </Row>
@@ -89,10 +115,10 @@ const Login = () => {
                         <a href=""> שכחתי סיסמא</a>
                     </Col>
                     <Col className="last-col-login">
-                        <p style={{textAlign: 'center'}}></p>
+                        <p style={{ textAlign: 'center' }}></p>
                     </Col>
-                    <Col style={{textAlign: 'center'}} className="last-col-login">
-                        <a  href="">הרשמה</a>
+                    <Col style={{ textAlign: 'center' }} className="last-col-login">
+                        <a href="http://localhost:3000/">הרשמה</a>
                     </Col>
                 </Row>
             </form>
