@@ -9,7 +9,8 @@ const NavbarComponent = () => {
           <Navbar.Brand href="Home">Home</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="Shop">Shop</Nav.Link>
-            <Nav.Link href="/">Login</Nav.Link>
+            <Nav.Link href="Login">Login</Nav.Link>
+            <Nav.Link href="/">Sign Up</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

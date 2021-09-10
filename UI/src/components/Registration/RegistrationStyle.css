@@ -18,10 +18,5 @@
 }
 
 .error-row{
-    height: 18vh;
-}
-
-#error-line{
-    text-align: right;
-    border: 1px solid blue;
+    height: 10vh;
 }
