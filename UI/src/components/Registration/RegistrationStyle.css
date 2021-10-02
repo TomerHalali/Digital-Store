@@ -17,6 +17,11 @@
     padding-left: 10vw;
 }
 
-.error-row{
-    height: 10vh;
+.text-password-validation{
+    font-size: small;
+}
+
+.passrowd-validation-row-p{
+    margin: 0px;
+    padding: 0px;
 }
